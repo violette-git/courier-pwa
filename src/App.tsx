@@ -6,6 +6,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
 import CourierDashboard from './components/CourierDashboard'
 import DispatchDashboard from './components/DispatchDashboard'
+import AdminDashboard from './components/AdminDashboard'
 
 
 function AppRoutes() {

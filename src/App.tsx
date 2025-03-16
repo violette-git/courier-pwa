@@ -4,11 +4,9 @@ import { useAuth } from './context/AuthContext'
 import AuthForm from './components/AuthForm'
 import ProtectedRoute from './components/ProtectedRoute'
 import './App.css'
+import CourierDashboard from './components/CourierDashboard'
+import DispatchDashboard from './components/DispatchDashboard'
 
-// Placeholder components for dashboards - these will be implemented in the frontend UI step
-const CourierDashboard = () => <div>Courier Dashboard (Coming Soon)</div>
-const DispatchDashboard = () => <div>Dispatch Dashboard (Coming Soon)</div>
-const AdminDashboard = () => <div>Admin Dashboard (Coming Soon)</div>
 
 function AppRoutes() {
   const { user, userRole } = useAuth()

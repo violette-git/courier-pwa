@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offline - Courier Service PWA</title>
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#4a90e2">
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: #f5f5f5;
+      color: #333;
+    }
+    
+    .offline-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .offline-icon {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 2rem;
+      color: #4a90e2;
+    }
+    
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #4a90e2;
+    }
+    
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 500px;
+      line-height: 1.5;
+    }
+    
+    .retry-button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    
+    .retry-button:hover {
+      background-color: #3a80d2;
+    }
+    
+    .footer {
+      padding: 1rem;
+      text-align: center;
+      background-color: #4a90e2;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="offline-container">
+    <svg class="offline-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M23.64 7c-.45-.34-4.93-4-11.64-4-1.5 0-2.89.19-4.15.48L10.52 6c1.1-.12 2.19-.18 3.48-.18 3.58 0 6.32 1.05 7.94 1.92L20 9.96l1.05-1.96zM2.81 2.81L1.39 4.22 4 6.83v3.17h2v-2.17l.73.73C7.95 10.97 9.82 12 12 12c.57 0 1.13-.09 1.67-.24l1.46 1.46C14.13 13.73 13.07 14 12 14c-3.58 0-6.32-1.05-7.94-1.92L3 10.04 1.95 12l1.05 1.96c.45.34 4.93 4 11.64 4 1.5 0 2.89-.19 4.15-.48l4.2 4.2 1.41-1.41L2.81 2.81zM12 10c-1.3 0-2.4-.84-2.82-2h1.1l.9.9c.26.04.53.1.82.1 1.1 0 2-.9 2-2 0-.29-.06-.56-.17-.82l1.25 1.25c.31.47.5 1.02.5 1.57 0 1.65-1.35 3-3 3z"/>
+    </svg>
+    
+    <h1>You're Offline</h1>
+    
+    <p>
+      It looks like you've lost your internet connection. The Courier Service PWA works offline, 
+      so you can still view cached content and queue operations for when you're back online.
+    </p>
+    
+    <button class="retry-button" onclick="window.location.reload()">
+      Try Again
+    </button>
+  </div>
+  
+  <div class="footer">
+    Courier Service PWA &copy; 2025
+  </div>
+
+  <script>
+    // Check if we're back online
+    window.addEventListener('online', () => {
+      window.location.reload();
+    });
+    
+    // Register service worker if not already registered
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/service-worker.js')
+        .then(registration => {
+          console.log('Service Worker registered with scope:', registration.scope);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
+  </script>
+</body>
+</html>
